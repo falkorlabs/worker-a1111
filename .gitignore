@@ -18,6 +18,7 @@ lib/
 lib64/
 parts/
 sdist/
+src/gcs.json
 var/
 wheels/
 share/python-wheels/
@@ -25,6 +26,11 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+*.DS_Store
+
+
+# LLMs
+*.safetensors
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

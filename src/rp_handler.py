@@ -2,6 +2,7 @@ import time
 
 import runpod
 import requests
+import upload_blob_from_memory
 from requests.adapters import HTTPAdapter, Retry
 
 automatic_session = requests.Session()
@@ -76,8 +77,16 @@ def handler(event):
     '''
     This is the handler function that will be called by the serverless.
     '''
-
+    print(f"EVENT: {event}")
+    bucket = event["input"]["bucket"]
+    file_name = event["input"]["gcs_file"]
+    # remove json key?
     json = run_inference(event["input"])
+    print(f"JSON: {json}")
+    # blob = json["output"]["image"]
+    blob = ""
+    resp = upload_blob_from_memory(bucket, blob, file_name)
+    print(f"RESP: {resp}")
 
     # return the output that you want to be returned like pre-signed URLs to output artifacts
     return json
